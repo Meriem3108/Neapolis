@@ -1,14 +1,15 @@
 package com.orbit.security.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.orbit.security.Entities.Produit;
 import com.orbit.security.token.Token;
 import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Set;
+
+import lombok.*;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -75,4 +76,9 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
+  @OneToMany(cascade = CascadeType.ALL,mappedBy="user")
+  @JsonIgnore
+  @ToString.Exclude
+  private Set<Produit> produits;
 }

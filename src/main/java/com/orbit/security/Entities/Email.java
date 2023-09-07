@@ -1,0 +1,33 @@
+package com.orbit.security.Entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "emails")
+@Getter
+@Setter
+@NoArgsConstructor /*constructeur vide*/
+@AllArgsConstructor /*constructeur avec tous les attributs*/
+@ToString
+@Builder
+public class Email {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "from_email")
+    private String from;
+    @Column(name = "to_email")
+    private String to;
+    @Column(name = "subject")
+    private String subject;
+    @Column(name = "body")
+    private String body;
+    @Column(name = "sent_date")
+    private LocalDateTime sentDate;
+    @Column(name = "received_date")
+    private LocalDateTime receivedDate;
+}
